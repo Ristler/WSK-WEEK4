@@ -9,7 +9,7 @@ import Upload from './views/Upload';
 
 const App = () => {
   return (
-    <BrowserRouter basename={import.meta.env.BASE_URL}>
+    <BrowserRouter>
 
     <Routes>
       <Route element={<Layout />}>
