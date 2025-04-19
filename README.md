@@ -1,4 +1,4 @@
-Open [App](https://users.metropolia.fi/~danielju/WSK/Week4/forms/) to view it in the browser.
+Open [App](https://users.metropolia.fi/~danielju/WSK/Week4/context/) to view it in the browser.
 
 
 
