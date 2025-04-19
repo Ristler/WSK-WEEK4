@@ -1,24 +1,15 @@
 import React, { useState } from 'react';
-
 import MediaRow from '../components/MediaRow';
 import SingleView from '../components/SingleView';
-//import { fetchData } from '../utils/fetchData';
-
-import useMedia from '../hooks/apiHooks'; 
-
+import { useMedia } from '../hooks/apiHooks';
 
 const Home = () => {
-
   const [selectedItem, setSelectedItem] = useState(null);
-
- 
-  
-
-const mediaArray = useMedia();
+  const mediaArray = useMedia();
 
   return (
     <>
-     <SingleView item={selectedItem} setSelectedItem={setSelectedItem} />
+      <SingleView item={selectedItem} setSelectedItem={setSelectedItem} />
       <h2>My Media</h2>
       <table>
         <thead>
@@ -30,22 +21,19 @@ const mediaArray = useMedia();
             <th>Created</th>
             <th>Size</th>
             <th>Type</th>
-           
           </tr>
         </thead>
         <tbody>
-
-          {mediaArray.map((item) => (
+          {mediaArray && mediaArray.map((item) => (
             <MediaRow
-            key={item.media_id}
-            item={item} 
-            setSelectedItem={setSelectedItem}
+              key={item.media_id}
+              item={item}
+              setSelectedItem={setSelectedItem}
             />
-
           ))}
         </tbody>
       </table>
-      </>
+    </>
   );
 };
 
