@@ -4,7 +4,7 @@ import react from '@vitejs/plugin-react-swc'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: '/~danielju/WSK/Week4/forms/',
+  base: '/~danielju/WSK/Week4/context/',
 
 
 })
