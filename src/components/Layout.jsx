@@ -35,9 +35,7 @@ const Layout = () => {
                 <li className="p-4 hover:bg-[#111]">
                   <Link to="/login">Login</Link>
                 </li>
-                <li className="p-4 hover:bg-[#111]">
-                  <Link to="/register">Register</Link>
-                </li>
+              
               </>
             )}
           </ul>
