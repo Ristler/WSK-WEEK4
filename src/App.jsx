@@ -11,6 +11,8 @@ import Profile from './views/Profile';
 import Single from './views/Single';
 import Upload from './views/Upload';
 
+
+
 function App() {
   return (
  

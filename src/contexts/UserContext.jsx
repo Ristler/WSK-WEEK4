@@ -1,5 +1,6 @@
 // UserContext.jsx
-import {createContext, useState} from 'react';
+import {createContext, useState, useEffect} from 'react';
+import PropTypes from 'prop-types';
 import {useAuthentication, useUser} from '../hooks/apiHooks';
 import {useNavigate, useLocation} from 'react-router';
 
@@ -11,6 +12,28 @@ const UserProvider = ({children}) => {
   const {getUserByToken} = useUser();
   const navigate = useNavigate();
   const location = useLocation();
+
+  // Add effect to check token and restore user session on page load
+  useEffect(() => {
+    const checkToken = async () => {
+      try {
+        const token = localStorage.getItem('token');
+        if (token) {
+          // Get user info from token (you might need to implement this function)
+          const userData = await getUserByToken(token);
+          if (userData) {
+            setUser(userData.user);
+          }
+        }
+      } catch (error) {
+        console.error('Auto-login failed:', error);
+        // Clear invalid token
+        localStorage.removeItem('token');
+      }
+    };
+    
+    checkToken();
+  }, []); // Empty dependency array means this runs once on component mount
 
   // login, logout and autologin functions are here instead of components
   const handleLogin = async (credentials) => {
@@ -66,4 +89,9 @@ const UserProvider = ({children}) => {
     </UserContext.Provider>
   );
 };
+
+UserProvider.propTypes = {
+  children: PropTypes.node.isRequired,
+};
+
 export {UserProvider, UserContext};
