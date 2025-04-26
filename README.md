@@ -1,4 +1,4 @@
-Open [App](https://users.metropolia.fi/~danielju/WSK/Week4/upload/) to view it in the browser.
+Open [App](https://users.metropolia.fi/~danielju/WSK/Week4/tailwind/) to view it in the browser.
 
 
 
