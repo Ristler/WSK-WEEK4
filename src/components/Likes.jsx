@@ -61,7 +61,26 @@ const Likes = ({item}) => {
       
       if (userLiked) {
         console.log('Deleting like with ID:', userLikeId);
-        await deleteLike(userLikeId, token);
+        
+        if (!userLikeId) {
+          const allLikes = await getAllLikes();
+          const existingLike = allLikes.find(
+            like => like.user_id === user.user_id && 
+                    parseInt(like.media_id) === parseInt(item.media_id)
+          );
+          
+          if (existingLike) {
+            console.log('Found like ID for deletion:', existingLike.like_id);
+            await deleteLike(existingLike.like_id, token);
+          } else {
+            console.error('Could not find like to delete');
+           
+            setUserLiked(false);
+          }
+        } else {
+          await deleteLike(userLikeId, token);
+        }
+        
         setUserLiked(false);
         setUserLikeId(null);
         setLikesCount(prev => Math.max(0, prev - 1));
