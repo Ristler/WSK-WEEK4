@@ -172,14 +172,22 @@ const useFile = () => {
 };
 
 const useLike = () => {
-  
+
+  const getAllLikes = async () => {
+    try {
+      return await fetchData(`${mediaApiUrl}/likes`);
+    } catch (error) {
+      console.error('Error getting all likes:', error);
+      return [];
+    }
+  };
 
   const postLike = async (data, token) => {
     console.log('Posting like with data:', data);
     const fetchOptions = {
       method: 'POST',
       headers: {
-        Authorization: `Bearer: ${token}`, 
+        Authorization: `Bearer ${token}`, 
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(data),
@@ -191,13 +199,13 @@ const useLike = () => {
     const fetchOptions = {
       method: 'DELETE',
       headers: {
-        Authorization: `Bearer: ${token}`,
+        Authorization: `Bearer ${token}`,
       },
     };
     return await fetchData(`${mediaApiUrl}/likes/${likeId}`, fetchOptions);
   };
 
-  return {postLike, deleteLike};
+  return {getAllLikes, postLike, deleteLike};
 };
 
 export {useMedia, useAuthentication, useUser, useFile, deleteMedia, useLike};
